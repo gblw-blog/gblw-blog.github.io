@@ -1,0 +1,425 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>RedHat常用命令 | HelloWorld</title>
+
+<link rel="shortcut icon" href="https://gblw-blog.github.io/favicon.ico?v=1666530277457">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://gblw-blog.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            HelloWorld
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamstore.tk" class="menu gt-a-link">
+                            小店
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamproxy.ml" class="menu gt-a-link">
+                            资料库
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://status.666818.xyz" class="menu gt-a-link">
+                            服务监控
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://gblw-blog.github.io/5i_Xj6-wL" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1666530277457" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    RedHat常用命令
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-09-28 ·
+                    </time>
+                    
+                        <a href="https://gblw-blog.github.io/LWaH52Axe/" class="post-tags">
+                            # linux
+                        </a>
+                    
+                        <a href="https://gblw-blog.github.io/zGCrkHYz_/" class="post-tags">
+                            # 资料整理
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <ol>
+<li>查询注册模块软件</li>
+</ol>
+<pre><code>yum list all | grep subscription  
+</code></pre>
+<ol start="2">
+<li>卸载注册模块</li>
+</ol>
+<pre><code>yum remove subscription-manager   
+</code></pre>
+<ol start="3">
+<li>立即重启</li>
+</ol>
+<pre><code>shutdown -r now  
+</code></pre>
+<ol start="4">
+<li>解压到指定路径</li>
+</ol>
+<pre><code>tar zxvf /source/kernel.tgz -C /Document  
+</code></pre>
+<ol start="5">
+<li>打包压缩文件</li>
+</ol>
+<pre><code>tar -cvf /home/www/images.tar /home/www/images ← 仅打包，不压缩  
+tar -zcvf /home/www/images.tar.gz /home/www/images ← 打包后，以gzip压缩  
+</code></pre>
+<ol start="6">
+<li>创建目录</li>
+</ol>
+<pre><code>mkdir -p[递归创建]  
+</code></pre>
+<ol start="7">
+<li>删除非空目录</li>
+</ol>
+<pre><code>rmdir（只能删除空目录） // rmdir 目标目录  
+rm (默认删除文件) -r[删除目录] -f[不希望询问确认]  // rm -rf 目标文件  
+</code></pre>
+<ol start="8">
+<li>复制文件</li>
+</ol>
+<pre><code>cp( -r[复制目录] -p[复制时保持文件属性]  // cp -rp 目标文件 目标目录
+</code></pre>
+<ol start="9">
+<li>移动文件</li>
+</ol>
+<pre><code>mv（剪切文件）  // mv 目标文件 目标目录 （将目标目录属性改为文件名时，可对文件进行改名）  
+</code></pre>
+<ol start="10">
+<li>创建文件</li>
+</ol>
+<pre><code>touch  //touch 文件名  
+</code></pre>
+<ol start="11">
+<li>查看文件内容</li>
+</ol>
+<pre><code>cat -n[显示行号]  // cat -n 目标文件  
+</code></pre>
+<ol start="12">
+<li>反向显示文件内容</li>
+</ol>
+<pre><code>tac(适用于短文件)  
+</code></pre>
+<ol start="13">
+<li>分页浏览文件</li>
+</ol>
+<pre><code>mroe(可用 空格 或 F 翻页，回车 换行， q 退出)  // more 目标文件
+less（在 more 命令的基础上还可用 上下箭头 换行， pgup、pgdown 翻页， / 加搜索内容查找， n 跳转下一个匹配项， N 跳转至上一个匹配项）
+// less 目标文件
+</code></pre>
+<ol start="14">
+<li>查看文件头</li>
+</ol>
+<pre><code>head(默认前10行) -n[指定行数]  // head -n 5 目标文件  
+</code></pre>
+<ol start="15">
+<li>查看文件尾</li>
+</ol>
+<pre><code>tail（默认10行） -n[显示指定行数]  // tail -n 5 目标文件  
+</code></pre>
+<ol start="16">
+<li>创建连接文件</li>
+</ol>
+<pre><code>ln(默认创建硬链接，实时更新) -s[创建软连接]  // ln -s 目标目录/[文件名]  
+</code></pre>
+<ol start="17">
+<li>更改文件权限</li>
+</ol>
+<pre><code>chmod -R[递归更改]  // chmod -R 777 目标文件  
+</code></pre>
+<ol start="18">
+<li>更改文件所有者</li>
+</ol>
+<pre><code>chown // chown 目标用户 目标文件  
+</code></pre>
+<ol start="19">
+<li>文件搜索</li>
+</ol>
+<pre><code>find -name[按文件名搜索，通配符 * ？]  -iname[按文件名搜索忽略大小写]
+-size[按文件大小搜索， + 大于， - 小于，缺省表示等于]  -type[根据类型查找， d 为目录， f 为文件]
+-user[根据所属用户查找]  -group[根据所属组查找]
+-cmin[根据更改时间查找，+2两分钟前，-2两分钟内] -mtime[根据修改时间，+2两天前，-2两天内]
+-a[查询条件 and 连接符]  -r[查询条件 or 连接符]
+// find -name *关键字*
+// find -size +1M (大于1M的文件)
+// find -iname *关键字*  
+</code></pre>
+<ol start="20">
+<li>快速文件查找</li>
+</ol>
+<pre><code>locate（从Linux文件资料库查找，系统定期自动更新） -i[忽略大小写]  
+</code></pre>
+<ol start="21">
+<li>搜索命令所在路径及别名</li>
+</ol>
+<pre><code>which // which 命令名  
+</code></pre>
+<ol start="22">
+<li>搜索文件中指定内容</li>
+</ol>
+<pre><code>grep(^a 以a开头) -i[忽略大小写] -v[排除指定字符]
+// grep ^aa a.txt &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ls |grep -v ^G  
+</code></pre>
+<ol start="23">
+<li>查看命令帮助</li>
+</ol>
+<pre><code>man // man ls
+info // info ls  
+</code></pre>
+<ol start="24">
+<li>查看用户登录信息</li>
+</ol>
+<pre><code>who  
+</code></pre>
+<ol start="25">
+<li>压缩文件</li>
+</ol>
+<pre><code>gzip -d[解压文件]  // gzip -d 目标.gz文件  
+</code></pre>
+<ol start="26">
+<li>目录打包压缩</li>
+</ol>
+<pre><code>tar -c[打包]  -v[显示详细信息]  -f[指定文件名]  -z[打包同时压缩]  -x[解包]
+// tar -zcvf 打包压缩后文件名 目标文件名
+// tar -zxvf 目标文件名  
+</code></pre>
+<ol start="27">
+<li>压缩 zip 文件</li>
+</ol>
+<pre><code>zip -r[压缩目录]    // zip 压缩后文件名 目标文件名
+</code></pre>
+<ol start="28">
+<li>解压 zip 文件</li>
+</ol>
+<pre><code>unzip 目标文件名  
+</code></pre>
+<ol start="29">
+<li>压缩 bz2 文件</li>
+</ol>
+<pre><code>biz（默认只能压缩文件） -k[压缩后保留文件]    // biz 目标文件
+// 打包目录并压缩  tar -cjf 打包压缩后文件名 目标文件名  
+</code></pre>
+<ol start="30">
+<li>解压 bz2 文件</li>
+</ol>
+<pre><code>bunzip2 -k[解压后保留原文件] // bunzip2 -k 目标文件名
+// 解压 tar.bz2 文件  tar -xjf 目标文件名  
+</code></pre>
+<ol start="31">
+<li>查看所有已安装软件</li>
+</ol>
+<pre><code>rpm -qa  
+</code></pre>
+<ol start="32">
+<li>卸载已安装软件</li>
+</ol>
+<pre><code>rpm -e --nodeps 软件包名  
+</code></pre>
+<ol start="33">
+<li>rpm 软件包安装</li>
+</ol>
+<pre><code>rpm -ivh 软件包名
+</code></pre>
+<ol start="34">
+<li>配置全局环境变量（ Java 为例）</li>
+</ol>
+<pre><code>export JAVA_HOME=/usr/java/jdk1.7.0_04
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin  
+</code></pre>
+<ol start="35">
+<li>更新环境变量配置信息</li>
+</ol>
+<pre><code>source /etc/profile  
+</code></pre>
+<ol start="36">
+<li>跳转上次所在目录</li>
+</ol>
+<pre><code>cd -
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gblw-blog.github.io/oracle-chang-yong-ming-ling/" class="post-title gt-a-link">
+                    Oracle常用命令
+                </a>
+            </div>
+        
+
+        
+            <span id="/redhat-chang-yong-ming-ling//" class="leancloud_visitors" data-flag-title="RedHat常用命令">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">花有重开日，人无再少年</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/gblaowang-i" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/Wsnd_D" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        菩提本无树，明镜亦非台，本来无一物，何处惹尘埃。
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://gblw-blog.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

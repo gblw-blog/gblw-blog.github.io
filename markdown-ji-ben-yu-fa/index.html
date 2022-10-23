@@ -1,0 +1,387 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Markdown语法 | HelloWorld</title>
+
+<link rel="shortcut icon" href="https://gblw-blog.github.io/favicon.ico?v=1666530277457">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://gblw-blog.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            HelloWorld
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamstore.tk" class="menu gt-a-link">
+                            小店
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamproxy.ml" class="menu gt-a-link">
+                            资料库
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://status.666818.xyz" class="menu gt-a-link">
+                            服务监控
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://gblw-blog.github.io/5i_Xj6-wL" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1666530277457" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Markdown语法
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-10-02 ·
+                    </time>
+                    
+                        <a href="https://gblw-blog.github.io/zGCrkHYz_/" class="post-tags">
+                            # 资料整理
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
+<p>相比WYSIWYG编辑器</p>
+<p>优点：<br>
+1、因为是纯文本，所以只要支持Markdown的地方都能获得一样的编辑效果，可以让作者摆脱排版的困扰，专心写作。<br>
+2、操作简单。比如:WYSIWYG编辑时标记个标题，先选中内容，再点击导航栏的标题按钮，选择几级标题。要三个步骤。而Markdown只需要在标题内容前加#即可</p>
+<p>缺点：<br>
+1、需要记一些语法（当然，是很简单。五分钟学会）。<br>
+2、有些平台不支持Markdown编辑模式。</p>
+<h1 id="一-标题">一、标题</h1>
+<p>在想要设置为标题的文字前面加#来表示<br>
+一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。</p>
+<pre><code>示例：
+# 这是一级标题
+## 这是二级标题
+### 这是三级标题
+#### 这是四级标题
+##### 这是五级标题
+###### 这是六级标题
+</code></pre>
+<h1 id="二-字体">二、字体</h1>
+<ul>
+<li>
+<p>加粗<br>
+要加粗的文字左右分别用两个*号包起来</p>
+</li>
+<li>
+<p>斜体<br>
+要倾斜的文字左右分别用一个*号包起来</p>
+</li>
+<li>
+<p>斜体加粗<br>
+要倾斜和加粗的文字左右分别用三个*号包起来</p>
+</li>
+<li>
+<p>删除线<br>
+要加删除线的文字左右分别用两个~~号包起来</p>
+</li>
+</ul>
+<p>示例：</p>
+<pre><code>**这是加粗的文字**
+*这是倾斜的文字*`
+***这是斜体加粗的文字***
+~~这是加删除线的文字~~
+</code></pre>
+<h1 id="三-引用">三、引用</h1>
+<p>在引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;<br>
+n个...<br>
+貌似可以一直加下去，但没神马卵用</p>
+<pre><code>示例：
+
+&gt;这是引用的内容
+&gt;&gt;这是引用的内容
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;这是引用的内容
+</code></pre>
+<h1 id="四-分割线">四、分割线</h1>
+<p>三个或者三个以上的 - 或者 * 都可以。</p>
+<pre><code>示例：
+---
+----
+***
+*****
+</code></pre>
+<h1 id="五-图片">五、图片</h1>
+<p>语法：</p>
+<p>![图片alt](图片地址 ''图片title'')</p>
+<p>图片alt就是显示在图片下面的文字，相当于对图片内容的解释。<br>
+图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加<br>
+示例：</p>
+<pre><code>![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/
+u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg &quot;区块链&quot;)
+</code></pre>
+<p>markdown格式追求的是简单、多平台统一。那么图片的存储就是一个问题，需要用图床，提供统一的外链，这样就不用在不同的平台去处理图片的问题了。才能做到书写一次，各处使用。可以选择自建图床，网上有相关教程</p>
+<h1 id="六-超链接">六、超链接</h1>
+<p>语法：</p>
+<pre><code>[超链接名](超链接地址 &quot;超链接title&quot;)
+title可加可不加
+</code></pre>
+<p>注：Markdown本身语法不支持链接在新页面中打开</p>
+<p>示例</p>
+<pre><code>&lt;a href=&quot;https://gblw-blog.github.io&quot; target=&quot;_blank&quot;&gt;HelloWorld&lt;/a&gt;
+</code></pre>
+<h1 id="七-列表">七、列表</h1>
+<p>无序列表<br>
+语法：<br>
+无序列表用 - + * 任何一种都可以</p>
+<ul>
+<li>列表内容</li>
+</ul>
+<ul>
+<li>列表内容</li>
+</ul>
+<ul>
+<li>列表内容</li>
+</ul>
+<p>注意：- + * 跟内容之间都要有一个空格</p>
+<p>语法：<br>
+数字加点</p>
+<ol>
+<li>列表内容</li>
+<li>列表内容</li>
+<li>列表内容</li>
+</ol>
+<p>注意：序号跟内容之间要有空格</p>
+<p>上一级和下一级之间敲三个空格即可</p>
+<h1 id="八-表格">八、表格</h1>
+<p>语法：</p>
+<table>
+<thead>
+<tr>
+<th>表头</th>
+<th style="text-align:center">表头</th>
+<th style="text-align:right">表头</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+<tr>
+<td>内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+</tbody>
+</table>
+<p>第二行分割表头和内容。</p>
+<ul>
+<li>有一个就行，为了对齐，多加了几个<br>
+文字默认居左<br>
+-两边加：表示文字居中<br>
+-右边加：表示文字居右<br>
+注：原生的语法两边都要用 | 包起来。此处省略</li>
+</ul>
+<h1 id="九-代码">九、代码</h1>
+<p>语法：<br>
+单行代码：代码之间分别用一个反引号包起来<br>
+代码块：代码之间分别用三个反引号包起来，且两边的反引号单独占一行</p>
+<p>(<code>)   代码...   代码...   代码... (</code>)<br>
+注：为了防止转译，前后三个反引号处加了小括号，实际是没有的。这里只是用来演示，实际中去掉两边小括号即可。</p>
+<p>示例：<br>
+单行代码</p>
+<pre><code>`create database hero;`
+</code></pre>
+<pre><code>代码块
+
+(```)
+    function fun(){
+         echo &quot;这是一句非常牛逼的代码&quot;;
+    }
+    fun();
+(```)
+</code></pre>
+<h1 id="十-流程图">十、流程图</h1>
+<pre><code>```flow
+st=&gt;start: 开始
+op=&gt;operation: My Operation
+cond=&gt;condition: Yes or No?
+e=&gt;end
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op
+&amp;```
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gblw-blog.github.io/h5-xiang-guan-zheng-li/" class="post-title gt-a-link">
+                    H5相关整理
+                </a>
+            </div>
+        
+
+        
+            <span id="/markdown-ji-ben-yu-fa//" class="leancloud_visitors" data-flag-title="Markdown语法">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">花有重开日，人无再少年</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/gblaowang-i" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/Wsnd_D" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        菩提本无树，明镜亦非台，本来无一物，何处惹尘埃。
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://gblw-blog.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

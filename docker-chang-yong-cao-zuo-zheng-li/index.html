@@ -1,0 +1,582 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Docker常用操作整理 | HelloWorld</title>
+
+<link rel="shortcut icon" href="https://gblw-blog.github.io/favicon.ico?v=1666530277457">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://gblw-blog.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            HelloWorld
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamstore.tk" class="menu gt-a-link">
+                            小店
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamproxy.ml" class="menu gt-a-link">
+                            资料库
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://status.666818.xyz" class="menu gt-a-link">
+                            服务监控
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://gblw-blog.github.io/5i_Xj6-wL" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1666530277457" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Docker常用操作整理
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-09-28 ·
+                    </time>
+                    
+                        <a href="https://gblw-blog.github.io/zGCrkHYz_/" class="post-tags">
+                            # 资料整理
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <!-- more -->
+<p>一、Docker 命令分类</p>
+<ol>
+<li>Docker 环境信息</li>
+</ol>
+<pre><code>docker [version | info]
+</code></pre>
+<ol start="2">
+<li>容器生命周期管理</li>
+</ol>
+<pre><code>docker [create | exec | run | start | stop | restart | kill | rm | pause | unpause]
+</code></pre>
+<ol start="3">
+<li>容器操作管理</li>
+</ol>
+<pre><code>docker [ps | inspect | top | attach | wait | export | prot | rename | stat]
+</code></pre>
+<ol start="4">
+<li>容器 rootfs 命令</li>
+</ol>
+<pre><code>docker [commit | cp | diff]
+</code></pre>
+<ol start="5">
+<li>镜像仓库</li>
+</ol>
+<pre><code>docker [login | pull | push | search]
+</code></pre>
+<ol start="6">
+<li>本地镜像管理</li>
+</ol>
+<pre><code>docker [build | images | rmi | tag | save | load | import]
+</code></pre>
+<ol start="7">
+<li>容器资源管理</li>
+</ol>
+<pre><code>docker [volume | network]
+</code></pre>
+<ol start="8">
+<li>系统日志信息</li>
+</ol>
+<pre><code>docker [event | history | logs]
+</code></pre>
+<!-- more -->
+<p>二、Docker 镜像相关命令</p>
+<ol>
+<li>镜像拉取</li>
+</ol>
+<pre><code># 拉取最新镜像
+docker pull 镜像名
+# 拉取指定版本镜像
+docker pull 镜像名:版本
+</code></pre>
+<p><strong>Tips：</strong><br>
+有些镜像后缀除了包含版本号外还会有其他信息常见的包括：</p>
+<p>slim：该标识意味着使用了更好的压缩技术（镜像瘦身），使得镜像包体积更小</p>
+<p>alpine：该标识意味着使用了 alpine 的 Linux内核，这个内核的特点就是非常小</p>
+<ol start="2">
+<li>查看本地已有镜像</li>
+</ol>
+<pre><code># 方式一(推荐)
+docker images
+# 方式二
+docker image ls
+</code></pre>
+<p>列名含义：</p>
+<p>REPOSITORY：镜像名称<br>
+TAG：镜像标签<br>
+IMAGE ID：镜像ID<br>
+CREATED：创建时间<br>
+SIZE：镜像大小<br>
+3. 镜像备份（镜像导出）</p>
+<pre><code>docker save 镜像名:版本号 -o 导出后的文件名.tar
+</code></pre>
+<p>Tips：</p>
+<p>如果要导出多个镜像用空格隔开即可<br>
+-o 参数表示导出，可用 &gt; 代替<br>
+4. 导入本地镜像</p>
+<pre><code>docker load -i 导入的文件名
+</code></pre>
+<p><strong>Tips：</strong></p>
+<p>-i 参数表示导入，可用 &lt; 代替</p>
+<ol start="5">
+<li>镜像查询（从镜像源）</li>
+</ol>
+<pre><code>docker search 镜像名
+</code></pre>
+<ol start="6">
+<li>查看镜像详细信息</li>
+</ol>
+<pre><code># 查看所有信息
+docker inspect 镜像名称:版本
+# 查看指定信息
+docker inspect -f {{&quot;.属性名称&quot;}} 镜像名:版本号
+</code></pre>
+<p><strong>Tips：</strong></p>
+<p>查看指定信息时 属性名称 必须与与镜像的属性信息名称大小写相同<br>
+属性名称 可通过 查看所有信息 命令的返回结果中看到<br>
+7. 查看镜像层信息</p>
+<pre><code>docker history 镜像名:版本号
+</code></pre>
+<p><strong>Tips：</strong><br>
+该命令结果信息显示不好，了解即可</p>
+<ol start="8">
+<li>镜像改名</li>
+</ol>
+<pre><code>docker tag 原镜像名:版本号 新镜像名:版本号
+</code></pre>
+<ol start="9">
+<li>删除镜像</li>
+</ol>
+<pre><code># 普通删除
+docker rmi 镜像名:版本号
+# 强制删除
+docker rmi -f 镜像名:版本号
+# 不删除未带 tag 的父镜像
+docker rmi -no-prune 镜像名:版本号
+# 删除所有镜像
+docker rmi $(docker images -q)
+</code></pre>
+<p><strong>Tips：</strong></p>
+<p>删除镜像时也可通过 IMAGE ID 的值删除，而不使用 镜像名:版本号 的方式。但由于 docker 客户端显示的是短 ID 所以 IMAGE ID 有时会重复，进而导致删除失败。所以不建议使用这种方式。<br>
+10.  清理临时文件和未被引用的镜像</p>
+<pre><code>docker image prune
+</code></pre>
+<p>常用参数：</p>
+<p>-a：删除所有没用的镜像，而不仅是临时文件<br>
+-f：无需确认，强制删除镜像</p>
+<!-- more -->
+<p>三、Docker 容器相关命令</p>
+<ol>
+<li>启动容器</li>
+</ol>
+<pre><code># 以终端交互方式启动容器并在停止后自动删除
+docker run -it --rm 镜像名:版本号
+</code></pre>
+<p>常用参数：</p>
+<p>-d：后台启动容器，并返回容器 ID<br>
+-e：设置环境变量，格式为：-e 变量名=变量值<br>
+-h：为容器指定 hostname，格式为：-h 自定义hostname （这里的 hostname 可以近似理解为 Windows 中的用户名）<br>
+-i：以交互模式启动容器，通常与 -t连用<br>
+-P：经容器内部端口随机映射至宿主机端口*（不推荐）*<br>
+-p：绑定容器内部指定端至宿主机指定端口，格式为：宿主机端口:容器内端口<br>
+-t：为容器分配一个伪终端，通常与 -i 连用<br>
+-v：绑定数据卷，格式为：-v 宿主机绝对路径目录:容器内目录的绝对路径 详见：五-2<br>
+--name：为容器指定名称，格式为：--name 自定义容器名<br>
+--rm：容器停止后自动删除容器。（与 -d 参数互斥）<br>
+2. 查看容器日志</p>
+<pre><code>docker logs 容器名称
+</code></pre>
+<p>**Tips：**这里可将容器名称替换为容器 ID，不推荐</p>
+<p>常用参数：</p>
+<p>-f：动态显示<br>
+-tail：列出最后N条日志信息，格式为：-tail 条数<br>
+3. 查看已有容器</p>
+<pre><code>docker ps 容器名称
+</code></pre>
+<p>列名含义：</p>
+<p>CONTAINER ID：容器 ID<br>
+IMAGE：使用的镜像<br>
+COMMAND：启动容器时使用的命令（容器内部）<br>
+CREATED：创建时间<br>
+STATUS：容器状态，类型：created：已创建、restarting：重启中、running：运行中、removing:迁移中、paused：暂停、exited、停止、dead：死亡<br>
+PORTS：容器端口信息和连接类型（tcp/udp）<br>
+NAMES：容器名称<br>
+常用参数：</p>
+<p>-a：显示所有容器，包括未运行的<br>
+-q：只显示容器 ID<br>
+4. 删除容器</p>
+<pre><code># 删除指定容器
+docker rm 容器名
+# 删除所有已停止运行的容器
+docker rm $(docker ps -aq)
+# 删除所有容器，包括正在运行的（有点骚，不推荐）
+docker rm -f $(docker ps -aq)
+</code></pre>
+<ol start="5">
+<li>创建容器</li>
+</ol>
+<pre><code># 创建一个以终端交互方式启动容器并在停止后自动删除
+docker create -it --rm 镜像名:版本号
+</code></pre>
+<p><strong>Tips：</strong></p>
+<p>create 命令与 run 命令相似，不同之处在于 create 命令只创建，不运行<br>
+create 命令不能使用 -d 参数<br>
+不推荐，直接用 run 命令就好了，何必脱了裤子放屁<br>
+6. 启动容器</p>
+<pre><code># 启动指定容器
+docker start 容器名
+# 启动所有容器
+docker start $(docker ps -aq)
+</code></pre>
+<ol start="7">
+<li>停止容器</li>
+</ol>
+<pre><code># 停止指定容器
+docker stop 容器名
+# 停止所有容器
+docker stop $(docker ps -aq)
+# 强制停止容器
+docker kill 容器名
+</code></pre>
+<ol start="8">
+<li>重启容器</li>
+</ol>
+<pre><code># 重启指定容器
+docker restart 容器名
+# 重启所有容器
+docker restart $(docker ps -aq)
+</code></pre>
+<ol start="9">
+<li>进入容器</li>
+</ol>
+<pre><code># 有 bash 命令的 Linux 如：CentOS
+docker exec -it 容器名 /bin/bash
+# 没有 bash 命令的 Linux 如：alpine
+docker exec -it 容器名 sh
+</code></pre>
+<p><strong>Tips：</strong></p>
+<p>对于有没有 bash 命令，这点需要进行尝试，如果进入报错或以 bash 进入后按 Tab 无法补全命令，则有可能才容器的系统中没有 bash 命令</p>
+<p>常用参数：</p>
+<p>-i：以交互方式进入<br>
+-t：分配一个伪终端<br>
+退出容器：进入容器后想退出直接在命令行敲 exit 命令即可<br>
+10.  查看容器信息</p>
+<pre><code>docker inspect 容器名称
+</code></pre>
+<!-- more -->
+<p>四、Docker 网络相关命令</p>
+<ol>
+<li>自定义网关</li>
+</ol>
+<pre><code># 查看当前已有网络模式（docker 安装完成后，会自动创建 bridge、host、none 三种网络驱动）
+docker network ls
+# 创建自定义桥接网关
+docker network create 自定义网关名
+# 启动容器并指定网关
+docker run -itd --name 容器名 --network 网关名 镜像名
+# 将运行中的容器绑定至自定义网关
+docker network connect 网关名 容器名
+# 删除自定义网关
+docker network rm 网关名
+# 将容器与指定网关断开
+docker network disconnect 网关名 容器名
+# 查看网络详情
+docker network inspect 网关名
+</code></pre>
+<p>说明：这种自定义网关的网络连接方式，可以让多个连接在同一个自定义网关上的容器之间，能够通过容器名进互相访问，而不使用易变的容器内部 IP 地址</p>
+<pre><code># 进入某容器
+docker exec -it 容器名 /bin/bash
+# 通过容器名连接其他容器
+ping 容器名
+</code></pre>
+<ol start="2">
+<li>设置固定IP</li>
+</ol>
+<pre><code># 1) 创建自定义网关
+docker network create --subnet 子网地址/24 --gateway 网关地址 自定义网关名
+# 2) 启动容器时设置静态IP
+docker run -itd --network 网关名 --ip 静态地址 容器名:版本号
+</code></pre>
+<p>示例：</p>
+<pre><code>docker network create --subnet 155.155.0.0/24 --gateway 155.155.0.1 my_bridge
+docker run -itd --name nginx -p 80:80 --network my_bridge --ip 155.155.0.99 nginx:1.19.3
+</code></pre>
+<!-- more -->
+<p>五、Docker数据卷</p>
+<ol>
+<li>容器内外文件复制</li>
+</ol>
+<pre><code># 复制容器内的文件至宿主机
+docker cp 容器名:容器内文件路径 宿主机目标路径
+# 复制宿主机文件至容器内
+docker cp 宿主机文件路径 容器名:容器内目标路径
+</code></pre>
+<p>说明：cp 命令既可以复制文件也可以复制目录</p>
+<ol start="2">
+<li>数据卷挂载</li>
+</ol>
+<pre><code># 宿主机数据卷挂载（推荐）
+docker run -v 宿主机绝对路径目录:容器内目录的绝对路径 镜像名
+# 命名数据卷挂载
+docker run -v 数据卷名称:容器内目录的绝对路径 镜像名
+# 匿名数据卷挂载
+docker run -v 容器内目录的绝对路径 镜像名
+# 查看数据卷
+docker volume ls
+# 查看数据卷信息
+docker volume inspect 数据卷名称
+# 清理无用数据卷
+docker volume prune
+</code></pre>
+<p><strong>Tips：</strong></p>
+<p>挂载数据卷时推荐使用 docker run 命令去挂载，这种方式最简单<br>
+docker 官网推荐尽量对目录进行挂载而不是文件<br>
+宿主机中的目录或文件不需要预先存在，在需要时 docker 会自动创建<br>
+如果将宿主机的空目录挂载至容器的非空目录时，docker 会将容器内目录下的文件拷贝至宿主机挂载目录<br>
+如果将宿主机的非空目录挂载至容器的目录上时，docker 会将容器内资源隐藏，保留宿主机目录中的资源<br>
+3. 数据卷容器</p>
+<pre><code># 创建数据卷容器
+docker run -d --name 容器名称 -v 宿主机绝对路径目录:容器内目录的绝对路径 镜像名
+# 启动容器
+docker run --volumes-frome 数据卷容器名 镜像名
+</code></pre>
+<p><strong>Tips：</strong></p>
+<p>数据卷容器没有限制，可以是 CentOS 的容器也可以是 hello-world 的容器<br>
+创建后的数据卷容器可以停止状态也可以是运行状态，该容器的运行状态对数据卷容器的功能使用没有影响<br>
+创建数据卷容器时容器内目录的绝对路径必须与要使用该数据卷容器的容器内目录的绝对路径相同<br>
+有些镜像的容器是不支持数据卷容器功能的，换句话说就是：映射在宿主机上的容器内目录中的资源文件带锁，只允许一个应用读写。例如：MySQL</p>
+<!-- more -->
+<p>六、Docker-compose</p>
+<ol>
+<li>
+<p>官网<br>
+https://github.com/docker/compose</p>
+</li>
+<li>
+<p>下载地址<br>
+https://github.com/docker/compose/releases/tag/1.29.2</p>
+</li>
+<li>
+<p>安装 docker-compose</p>
+</li>
+</ol>
+<pre><code># 移动文件
+mv /home/sir/docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
+# 修改权限 开发环境可以授予 777
+chmod +x /usr/local/bin/docker-compose
+# 检查安装情况
+docker-compose -v
+# 卸载
+rm -rf /usr/local/bin/docker-compose
+# 重启
+reboot
+</code></pre>
+<ol start="4">
+<li>docker-compose 常用命令</li>
+</ol>
+<pre><code># 前台启动服务
+docker-compose up
+# 后台启动服务
+docker-compose up -d
+# 停止服务并删除容器
+docker-compose down
+# 列出所有运行容器
+docker-compose ps
+# 查看服务日志
+docker-compo logs
+# 构建或重新构建服务
+docker-compose build
+# 运行服务
+docker-compose start
+# 停止服务
+docker-compose stop
+# 重启服务
+docker-compose restart
+</code></pre>
+<p><strong>Tips：</strong></p>
+<p>运行 docker-compose 命令时，必须在 docker-compose.yaml 文件夹内<br>
+如果 docker-compose 配置文件名不是 docker-compose.yaml 则需要通过 -f 参数来指定配置文件</p>
+<!-- more -->
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gblw-blog.github.io/guo-nei-docker-jing-xiang-la-qu-jia-su/" class="post-title gt-a-link">
+                    国内docker镜像拉取加速
+                </a>
+            </div>
+        
+
+        
+            <span id="/docker-chang-yong-cao-zuo-zheng-li//" class="leancloud_visitors" data-flag-title="Docker常用操作整理">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">花有重开日，人无再少年</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/gblaowang-i" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/Wsnd_D" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        菩提本无树，明镜亦非台，本来无一物，何处惹尘埃。
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://gblw-blog.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1093 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Mysql-进阶总结 | HelloWorld</title>
+
+<link rel="shortcut icon" href="https://gblw-blog.github.io/favicon.ico?v=1666530277457">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://gblw-blog.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            HelloWorld
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamstore.tk" class="menu gt-a-link">
+                            小店
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamproxy.ml" class="menu gt-a-link">
+                            资料库
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://status.666818.xyz" class="menu gt-a-link">
+                            服务监控
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://gblw-blog.github.io/5i_Xj6-wL" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1666530277457" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Mysql-进阶总结
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-10-04 ·
+                    </time>
+                    
+                        <a href="https://gblw-blog.github.io/OZ4qB88YM/" class="post-tags">
+                            # Mysql
+                        </a>
+                    
+                        <a href="https://gblw-blog.github.io/zGCrkHYz_/" class="post-tags">
+                            # 资料整理
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="一-多表设计">一、多表设计</h1>
+<hr>
+<h2 id="1一对一了解">1.一对一(了解)</h2>
+<ul>
+<li>分析
+<ul>
+<li>人和身份证。一个人只有一个身份证，一个身份证只能对应一个人！</li>
+</ul>
+</li>
+<li>实现原则
+<ul>
+<li>在任意一个表建立外键，去关联另外一个表的主键</li>
+</ul>
+</li>
+<li>SQL演示</li>
+</ul>
+<pre><code>-- 创建db5数据库 
+CREATE DATABASE db5; 
+-- 使用db5数据库 
+USE db5; 
+-- 创建person表 
+CREATE TABLE person( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	NAME VARCHAR(20) 
+); 
+-- 添加数据 
+INSERT INTO person VALUES (NULL,'张三'),(NULL,'李四'); 
+-- 创建card表 
+CREATE TABLE card( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	number VARCHAR(50), 
+	pid INT UNIQUE, 
+	CONSTRAINT cp_fk1 FOREIGN KEY (pid) REFERENCES person(id) -- 添加外键 
+); 
+-- 添加数据 
+INSERT INTO card VALUES (NULL,'12345',1),(NULL,'56789',2);
+</code></pre>
+<ul>
+<li>图解<br>
+<img src="https://gblw-blog.github.io/post-images/1664881605350.png" alt="" loading="lazy"></li>
+</ul>
+<h2 id="2一对多">2.一对多</h2>
+<ul>
+<li>分析
+<ul>
+<li>用户和订单。一个用户可以有多个订单！</li>
+<li>商品分类和商品。一个分类下可以有多个商品！</li>
+</ul>
+</li>
+<li>实现原则
+<ul>
+<li>在多的一方，建立外键约束，来关联一的一方主键</li>
+</ul>
+</li>
+<li>SQL演示</li>
+</ul>
+<pre><code>/* 
+	用户和订单 
+*/ 
+-- 创建user表 
+CREATE TABLE USER( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	NAME VARCHAR(20) 
+); 
+-- 添加数据 
+INSERT INTO USER VALUES (NULL,'张三'),(NULL,'李四'); 
+-- 创建orderlist表 
+CREATE TABLE orderlist( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	number VARCHAR(20), 
+	uid INT, 
+	CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id)  -- 添加外键约束 
+); 
+-- 添加数据 
+INSERT INTO orderlist VALUES (NULL,'hm001',1),(NULL,'hm002',1),(NULL,'hm003',2),(NULL,'hm004',2); 
+/* 
+	商品分类和商品 
+*/ 
+-- 创建category表 
+CREATE TABLE category( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	NAME VARCHAR(10) 
+); 
+-- 添加数据 
+INSERT INTO category VALUES (NULL,'手机数码'),(NULL,'电脑办公'); 
+-- 创建product表 
+CREATE TABLE product( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	NAME VARCHAR(30), 
+	cid INT, 
+	CONSTRAINT pc_fk1 FOREIGN KEY (cid) REFERENCES category(id)  -- 添加外键约束 
+); 
+-- 添加数据 
+INSERT INTO product VALUES (NULL,'华为P30',1),(NULL,'小米note3',1), 
+(NULL,'联想电脑',2),(NULL,'苹果电脑',2);
+</code></pre>
+<ul>
+<li>图解<br>
+<img src="https://gblw-blog.github.io/post-images/1664881642874.png" alt="" loading="lazy"></li>
+</ul>
+<h2 id="3多对多">3.多对多</h2>
+<ul>
+<li>分析
+<ul>
+<li>学生和课程。一个学生可以选择多个课程，一个课程也可以被多个学生选择！</li>
+</ul>
+</li>
+<li>实现原则
+<ul>
+<li>需要借助第三张表中间表，中间表至少包含两个列，这两个列作为中间表的外键，分别关联两张表的主键</li>
+</ul>
+</li>
+<li>SQL演示</li>
+</ul>
+<pre><code>-- 创建student表 
+CREATE TABLE student( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	NAME VARCHAR(20) 
+); 
+-- 添加数据 
+INSERT INTO student VALUES (NULL,'张三'),(NULL,'李四'); 
+-- 创建course表 
+CREATE TABLE course( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	NAME VARCHAR(10) 
+); 
+-- 添加数据 
+INSERT INTO course VALUES (NULL,'语文'),(NULL,'数学'); 
+-- 创建中间表 
+CREATE TABLE stu_course( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	sid INT, -- 用于和student表的id进行外键关联 
+	cid INT, -- 用于和course表的id进行外键关联 
+	CONSTRAINT sc_fk1 FOREIGN KEY (sid) REFERENCES student(id), -- 添加外键约束 
+	CONSTRAINT sc_fk2 FOREIGN KEY (cid) REFERENCES course(id)   -- 添加外键约束 
+); 
+-- 添加数据 
+INSERT INTO stu_course VALUES (NULL,1,1),(NULL,1,2),(NULL,2,1),(NULL,2,2);
+</code></pre>
+<ul>
+<li>图解<br>
+<img src="https://gblw-blog.github.io/post-images/1664881650040.png" alt="" loading="lazy"></li>
+</ul>
+<h1 id="二-多表查询">二、多表查询</h1>
+<hr>
+<h2 id="1多表查询-数据准备">1.多表查询-数据准备</h2>
+<ul>
+<li>SQL语句</li>
+</ul>
+<pre><code>-- 创建db6数据库 
+CREATE DATABASE db6; 
+-- 使用db6数据库 
+USE db6; 
+-- 创建user表 
+CREATE TABLE USER( 
+	id INT PRIMARY KEY AUTO_INCREMENT,	-- 用户id 
+	NAME VARCHAR(20),			        -- 用户姓名 
+	age INT                             -- 用户年龄 
+); 
+-- 添加数据 
+INSERT INTO USER VALUES (1,'张三',23); 
+INSERT INTO USER VALUES (2,'李四',24); 
+INSERT INTO USER VALUES (3,'王五',25); 
+INSERT INTO USER VALUES (4,'赵六',26); 
+-- 订单表 
+CREATE TABLE orderlist( 
+	id INT PRIMARY KEY AUTO_INCREMENT,	-- 订单id 
+	number VARCHAR(30),					-- 订单编号 
+	uid INT,    -- 外键字段 
+	CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id) 
+); 
+-- 添加数据 
+INSERT INTO orderlist VALUES (1,'hm001',1); 
+INSERT INTO orderlist VALUES (2,'hm002',1); 
+INSERT INTO orderlist VALUES (3,'hm003',2); 
+INSERT INTO orderlist VALUES (4,'hm004',2); 
+INSERT INTO orderlist VALUES (5,'hm005',3); 
+INSERT INTO orderlist VALUES (6,'hm006',3); 
+INSERT INTO orderlist VALUES (7,'hm007',NULL); 
+-- 商品分类表 
+CREATE TABLE category( 
+	id INT PRIMARY KEY AUTO_INCREMENT,  -- 商品分类id 
+	NAME VARCHAR(10)                    -- 商品分类名称 
+); 
+-- 添加数据 
+INSERT INTO category VALUES (1,'手机数码'); 
+INSERT INTO category VALUES (2,'电脑办公'); 
+INSERT INTO category VALUES (3,'烟酒茶糖'); 
+INSERT INTO category VALUES (4,'鞋靴箱包'); 
+-- 商品表 
+CREATE TABLE product( 
+	id INT PRIMARY KEY AUTO_INCREMENT,   -- 商品id 
+	NAME VARCHAR(30),                    -- 商品名称 
+	cid INT, -- 外键字段 
+	CONSTRAINT cp_fk1 FOREIGN KEY (cid) REFERENCES category(id) 
+); 
+-- 添加数据 
+INSERT INTO product VALUES (1,'华为手机',1); 
+INSERT INTO product VALUES (2,'小米手机',1); 
+INSERT INTO product VALUES (3,'联想电脑',2); 
+INSERT INTO product VALUES (4,'苹果电脑',2); 
+INSERT INTO product VALUES (5,'中华香烟',3); 
+INSERT INTO product VALUES (6,'玉溪香烟',3); 
+INSERT INTO product VALUES (7,'计生用品',NULL); 
+-- 中间表 
+CREATE TABLE us_pro( 
+	upid INT PRIMARY KEY AUTO_INCREMENT,  -- 中间表id 
+	uid INT, -- 外键字段。需要和用户表的主键产生关联 
+	pid INT, -- 外键字段。需要和商品表的主键产生关联 
+	CONSTRAINT up_fk1 FOREIGN KEY (uid) REFERENCES USER(id), 
+	CONSTRAINT up_fk2 FOREIGN KEY (pid) REFERENCES product(id) 
+); 
+-- 添加数据 
+INSERT INTO us_pro VALUES (NULL,1,1); 
+INSERT INTO us_pro VALUES (NULL,1,2); 
+INSERT INTO us_pro VALUES (NULL,1,3); 
+INSERT INTO us_pro VALUES (NULL,1,4); 
+INSERT INTO us_pro VALUES (NULL,1,5); 
+INSERT INTO us_pro VALUES (NULL,1,6); 
+INSERT INTO us_pro VALUES (NULL,1,7); 
+INSERT INTO us_pro VALUES (NULL,2,1); 
+INSERT INTO us_pro VALUES (NULL,2,2); 
+INSERT INTO us_pro VALUES (NULL,2,3); 
+INSERT INTO us_pro VALUES (NULL,2,4); 
+INSERT INTO us_pro VALUES (NULL,2,5); 
+INSERT INTO us_pro VALUES (NULL,2,6); 
+INSERT INTO us_pro VALUES (NULL,2,7); 
+INSERT INTO us_pro VALUES (NULL,3,1); 
+INSERT INTO us_pro VALUES (NULL,3,2); 
+INSERT INTO us_pro VALUES (NULL,3,3); 
+INSERT INTO us_pro VALUES (NULL,3,4); 
+INSERT INTO us_pro VALUES (NULL,3,5); 
+INSERT INTO us_pro VALUES (NULL,3,6); 
+INSERT INTO us_pro VALUES (NULL,3,7); 
+INSERT INTO us_pro VALUES (NULL,4,1); 
+INSERT INTO us_pro VALUES (NULL,4,2); 
+INSERT INTO us_pro VALUES (NULL,4,3); 
+INSERT INTO us_pro VALUES (NULL,4,4); 
+INSERT INTO us_pro VALUES (NULL,4,5); 
+INSERT INTO us_pro VALUES (NULL,4,6); 
+INSERT INTO us_pro VALUES (NULL,4,7);
+</code></pre>
+<h2 id="2多表查询-笛卡尔积查询了解">2.多表查询-笛卡尔积查询(了解)</h2>
+<ul>
+<li>有两张表，获取这两个表的所有组合情况</li>
+<li>要完成多表查询，需要消除这些没有用的数据</li>
+<li>多表查询格式</li>
+</ul>
+<pre><code>SELECT
+    列名列表
+FROM
+    表名列表
+WHERE
+    条件...
+</code></pre>
+<ul>
+<li>笛卡尔积查询</li>
+</ul>
+<pre><code>-- 标准语法
+SELECT 列名 FROM 表名1,表名2,...;
+
+-- 查询user表和orderlist表
+SELECT * FROM USER,orderlist;
+</code></pre>
+<h2 id="3多表查询-内连接查询">3.多表查询-内连接查询</h2>
+<ul>
+<li>查询原理
+<ul>
+<li>内连接查询的是两张表有交集的部分数据(有主外键关联的数据)</li>
+</ul>
+</li>
+<li>显式内连接</li>
+</ul>
+<pre><code>-- 标准语法
+SELECT 列名 FROM 表名1 [INNER] JOIN 表名2 ON 条件;
+
+-- 查询用户信息和对应的订单信息
+SELECT * FROM USER INNER JOIN orderlist ON user.id=orderlist.uid;
+SELECT * FROM USER JOIN orderlist ON user.id=orderlist.uid;
+
+-- 查询用户信息和对应的订单信息，起别名
+SELECT * FROM USER u JOIN orderlist o ON u.id=o.uid;
+
+-- 查询用户姓名，年龄。和订单编号
+SELECT
+    u.`name`,   -- 姓名
+    u.`age`,    -- 年龄
+    o.`number`  -- 订单编号
+FROM
+    USER u          -- 用户表
+JOIN
+    orderlist o     -- 订单表
+ON 
+    u.`id` = o.`uid`;
+</code></pre>
+<ul>
+<li>隐式内连接</li>
+</ul>
+<pre><code>-- 标准语法
+SELECT 列名 FROM 表名1,表名2 WHERE 条件;
+
+-- 查询用户姓名，年龄。和订单编号
+SELECT
+    u.`name`,   -- 姓名
+    u.`age`,    -- 年龄
+    o.`number`  -- 订单编号
+FROM
+    USER u,     -- 用户表
+    orderlist o     -- 订单表
+WHERE
+    u.`id`=o.`uid`;
+</code></pre>
+<h2 id="4多表查询-外连接查询">4.多表查询-外连接查询</h2>
+<ul>
+<li>左外连接
+<ul>
+<li>查询原理
+<ul>
+<li>查询左表的全部数据，和左右两张表有交集部分的数据</li>
+</ul>
+</li>
+<li>基本演示</li>
+</ul>
+</li>
+</ul>
+<pre><code>-- 标准语法 
+SELECT 列名 FROM 表名1 LEFT [OUTER] JOIN 表名2 ON 条件; 
+-- 查询所有用户信息，以及用户对应的订单信息 
+SELECT 
+	u.`name`,	-- 姓名 
+	u.`age`,	-- 年龄 
+	o.`number`	-- 订单编号 
+FROM 
+	USER u          -- 用户表 
+LEFT OUTER JOIN 
+	orderlist o     -- 订单表 
+ON 
+	u.`id`=o.`uid`;
+</code></pre>
+<ul>
+<li>右外连接
+<ul>
+<li>查询原理
+<ul>
+<li>查询右表的全部数据，和左右两张表有交集部分的数据</li>
+</ul>
+</li>
+<li>基本演示</li>
+</ul>
+</li>
+</ul>
+<pre><code>-- 基本语法 
+SELECT 列名 FROM 表名1 RIGHT [OUTER] JOIN 表名2 ON 条件; 
+-- 查询所有订单信息，以及订单所属的用户信息 
+SELECT 
+	u.`name`,	-- 姓名 
+	u.`age`,	-- 年龄 
+	o.`number`	-- 订单编号 
+FROM 
+	USER u          -- 用户表 
+RIGHT OUTER JOIN 
+	orderlist o     -- 订单表 
+ON 
+	u.`id`=o.`uid`;
+</code></pre>
+<h2 id="5多表查询-子查询">5.多表查询-子查询</h2>
+<ul>
+<li>子查询介绍
+<ul>
+<li>查询语句中嵌套了查询语句。我们就将嵌套查询称为子查询！</li>
+</ul>
+</li>
+<li>子查询-结果是单行单列的
+<ul>
+<li>可以作为条件，使用运算符进行判断！</li>
+<li>基本演示</li>
+</ul>
+</li>
+</ul>
+<pre><code>-- 标准语法 
+SELECT 列名 FROM 表名 WHERE 列名=(SELECT 聚合函数(列名) FROM 表名 [WHERE 条件]); 
+-- 查询年龄最高的用户姓名 
+SELECT MAX(age) FROM USER;              -- 查询出最高年龄 
+SELECT NAME,age FROM USER WHERE age=26; -- 根据查询出来的最高年龄，查询姓名和年龄 
+SELECT NAME,age FROM USER WHERE age = (SELECT MAX(age) FROM USER);
+</code></pre>
+<ul>
+<li>子查询-结果是多行单列的
+<ul>
+<li>可以作为条件，使用运算符in或not in进行判断！</li>
+<li>基本演示</li>
+</ul>
+</li>
+</ul>
+<pre><code>-- 标准语法 
+SELECT 列名 FROM 表名 WHERE 列名 [NOT] IN (SELECT 列名 FROM 表名 [WHERE 条件]);  
+-- 查询张三和李四的订单信息 
+SELECT id FROM USER WHERE NAME='张三' OR NAME='李四';   -- 查询张三和李四用户的id 
+SELECT number,uid FROM orderlist WHERE uid=1 OR uid=2; -- 根据id查询订单 
+SELECT number,uid FROM orderlist WHERE uid IN (SELECT id FROM USER WHERE NAME='张三' OR NAME='李四');
+</code></pre>
+<ul>
+<li>子查询-结果是多行多列的
+<ul>
+<li>可以作为一张虚拟表参与查询！</li>
+<li>基本演示</li>
+</ul>
+</li>
+</ul>
+<pre><code>-- 标准语法 
+SELECT 列名 FROM 表名 [别名],(SELECT 列名 FROM 表名 [WHERE 条件]) [别名] [WHERE 条件]; 
+-- 查询订单表中id大于4的订单信息和所属用户信息 
+SELECT * FROM USER u,(SELECT * FROM orderlist WHERE id&gt;4) o WHERE u.id=o.uid;
+</code></pre>
+<h2 id="6多表查询练习">6.多表查询练习</h2>
+<ul>
+<li>查询用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<pre><code>/*
+分析：
+    用户的编号、姓名、年龄  user表     订单编号 orderlist表
+    条件：user.id = orderlist.uid
+*/
+SELECT
+    t1.`id`,    -- 用户编号
+    t1.`name`,  -- 用户姓名
+    t1.`age`,   -- 用户年龄
+    t2.`number` -- 订单编号
+FROM
+    USER t1,       -- 用户表
+    orderlist t2   -- 订单表
+WHERE
+    t1.`id` = t2.`uid`;
+</code></pre>
+<ul>
+<li>查询所有的用户。用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<pre><code>/*
+分析：
+    用户的编号、姓名、年龄 user表     订单编号 orderlist表
+    条件：user.id = orderlist.uid
+    查询所有用户，使用左外连接
+*/
+SELECT
+    t1.`id`,    -- 用户编号
+    t1.`name`,  -- 用户姓名
+    t1.`age`,   -- 用户年龄
+    t2.`number` -- 订单编号
+FROM
+    USER t1        -- 用户表
+LEFT OUTER JOIN
+    orderlist t2   -- 订单表
+ON
+    t1.`id` = t2.`uid`;
+</code></pre>
+<ul>
+<li>查询所有的订单。用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<pre><code>/*
+分析：
+    用户的编号、姓名、年龄 user表     订单编号 orderlist表
+    条件：user.id = orderlist.uid
+    查询所有订单，使用右外连接
+*/
+SELECT
+    t1.`id`,    -- 用户编号
+    t1.`name`,  -- 用户姓名
+    t1.`age`,   -- 用户年龄
+    t2.`number` -- 订单编号
+FROM
+    USER t1         -- 用户表
+RIGHT OUTER JOIN
+    orderlist t2    -- 订单表
+ON
+    t1.`id` = t2.`uid`;
+</code></pre>
+<ul>
+<li>查询用户年龄大于23岁的信息。显示用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<pre><code>/*
+分析：
+    用户的编号、姓名、年龄 user表     订单编号 orderlist表
+    条件：user.age &gt; 23 AND user.id = orderlist.uid
+*/
+/*
+select
+    t1.`id`,    -- 用户编号
+    t1.`name`,  -- 用户姓名
+    t1.`age`,   -- 用户年龄
+    t2.`number` -- 订单编号
+from
+    user t1,     -- 用户表
+    orderlist t2 -- 订单表
+where
+    t1.`age` &gt; 23
+    and
+    t1.`id` = t2.`uid`;
+*/
+SELECT
+    t1.`id`,    -- 用户编号
+    t1.`name`,  -- 用户姓名
+    t1.`age`,   -- 用户年龄
+    t2.`number` -- 订单编号
+FROM
+    USER t1       -- 用户表
+LEFT OUTER JOIN
+    orderlist t2  -- 订单表
+ON
+    t1.`id` = t2.`uid`
+WHERE
+    t1.`age` &gt; 23;
+</code></pre>
+<ul>
+<li>查询张三和李四用户的信息。显示用户的编号、姓名、年龄。订单编号</li>
+</ul>
+<pre><code>/*
+分析：
+    用户的编号、姓名、年龄 user表     订单编号 orderlist表
+    条件：user.id = orderlist.uid AND user.name IN ('张三','李四');
+*/
+SELECT
+    t1.`id`,    -- 用户编号
+    t1.`name`,  -- 用户姓名
+    t1.`age`,   -- 用户年龄
+    t2.`number` -- 订单编号
+FROM
+    USER t1,        -- 用户表
+    orderlist t2    -- 订单表
+WHERE
+    t1.`id` = t2.`uid`
+    AND
+    -- (t1.`name` = '张三' OR t1.`name` = '李四');
+    t1.`name` IN ('张三','李四');
+</code></pre>
+<ul>
+<li>查询商品分类的编号、分类名称。分类下的商品名称</li>
+</ul>
+<pre><code>/*
+分析：
+    商品分类的编号、分类名称 category表     分类下的商品名称 product表
+    条件：category.id = product.cid
+*/
+SELECT
+    t1.`id`,    -- 分类编号
+    t1.`name`,  -- 分类名称
+    t2.`name`   -- 商品名称
+FROM
+    category t1,    -- 商品分类表
+    product t2      -- 商品表
+WHERE
+    t1.`id` = t2.`cid`;
+</code></pre>
+<ul>
+<li>查询所有的商品分类。商品分类的编号、分类名称。分类下的商品名称</li>
+</ul>
+<pre><code>/*
+分析：
+    商品分类的编号、分类名称 category表     分类下的商品名称 product表
+    条件：category.id = product.cid
+    查询所有的商品分类，使用左外连接
+*/
+SELECT
+    t1.`id`,    -- 分类编号
+    t1.`name`,  -- 分类名称
+    t2.`name`   -- 商品名称
+FROM
+    category t1 -- 商品分类表
+LEFT OUTER JOIN
+    product t2  -- 商品表
+ON
+    t1.`id` = t2.`cid`;
+</code></pre>
+<ul>
+<li>查询所有的商品信息。商品分类的编号、分类名称。分类下的商品名称</li>
+</ul>
+<pre><code>/*
+分析：
+    商品分类的编号、分类名称 category表     分类下的商品名称 product表
+    条件：category.id = product.cid
+    查询所有的商品信息，使用右外连接
+*/
+SELECT
+    t1.`id`,    -- 分类编号
+    t1.`name`,  -- 分类名称
+    t2.`name`   -- 商品名称
+FROM
+    category t1 -- 商品分类表
+RIGHT OUTER JOIN
+    product t2  -- 商品表
+ON
+    t1.`id` = t2.`cid`;
+</code></pre>
+<ul>
+<li>查询所有的用户和所有的商品。显示用户的编号、姓名、年龄。商品名称</li>
+</ul>
+<pre><code>/*
+分析：
+    用户的编号、姓名、年龄 user表   商品名称 product表   中间表 us_pro
+    条件：us_pro.uid = user.id AND us_pro.pid = product.id
+*/
+SELECT
+    t1.`id`,    -- 用户编号
+    t1.`name`,  -- 用户名称
+    t1.`age`,   -- 用户年龄
+    t2.`name`   -- 商品名称
+FROM
+    USER t1,    -- 用户表
+    product t2, -- 商品表
+    us_pro t3   -- 中间表
+WHERE
+    t3.`uid` = t1.`id`
+    AND
+    t3.`pid` = t2.`id`;
+</code></pre>
+<ul>
+<li>查询张三和李四这两个用户可以看到的商品。显示用户的编号、姓名、年龄。商品名称</li>
+</ul>
+<pre><code>/*
+分析：
+    用户的编号、姓名、年龄 user表   商品名称 product表   中间表 us_pro
+    条件：us_pro.uid = user.id AND us_pro.pid = product.id AND user.name IN ('张三','李四')
+*/
+SELECT
+    t1.`id`,    -- 用户编号
+    t1.`name`,  -- 用户名称
+    t1.`age`,   -- 用户年龄
+    t2.`name`   -- 商品名称
+FROM
+    USER t1,    -- 用户表
+    product t2, -- 商品表
+    us_pro t3   -- 中间表
+WHERE
+    (t3.`uid` = t1.`id` AND t3.`pid` = t2.`id`)
+    AND
+    -- (t1.`name` = '张三' or t1.`name` = '李四');
+    t1.`name` IN ('张三','李四');
+</code></pre>
+<h2 id="7多表查询-自关联查询">7.多表查询-自关联查询</h2>
+<ul>
+<li>自关联查询介绍
+<ul>
+<li>同一张表中有数据关联。可以多次查询这同一个表！</li>
+</ul>
+</li>
+<li>自关联查询演示</li>
+</ul>
+<pre><code>-- 创建员工表 
+CREATE TABLE employee( 
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	NAME VARCHAR(20), 
+	mgr INT, 
+	salary DOUBLE 
+); 
+-- 添加数据 
+INSERT INTO employee VALUES (1001,'孙悟空',1005,9000.00), 
+(1002,'猪八戒',1005,8000.00), 
+(1003,'沙和尚',1005,8500.00), 
+(1004,'小白龙',1005,7900.00), 
+(1005,'唐僧',NULL,15000.00), 
+(1006,'武松',1009,7600.00), 
+(1007,'李逵',1009,7400.00), 
+(1008,'林冲',1009,8100.00), 
+(1009,'宋江',NULL,16000.00); 
+-- 查询所有员工的姓名及其直接上级的姓名，没有上级的员工也需要查询 
+/* 
+分析： 
+	员工姓名 employee表        直接上级姓名 employee表 
+	条件：employee.mgr = employee.id 
+	查询左表的全部数据，和左右两张表交集部分数据，使用左外连接 
+*/ 
+SELECT 
+	t1.name,	-- 员工姓名 
+	t1.mgr,		-- 上级编号 
+	t2.id,		-- 员工编号 
+	t2.name     -- 员工姓名 
+FROM 
+	employee t1  -- 员工表 
+LEFT OUTER JOIN 
+	employee t2  -- 员工表 
+ON 
+	t1.mgr = t2.id;
+</code></pre>
+<h1 id="三-视图">三、视图</h1>
+<hr>
+<h2 id="1视图的概念">1.视图的概念</h2>
+<ul>
+<li>视图是一种虚拟存在的数据表</li>
+<li>这个虚拟的表并不在数据库中实际存在</li>
+<li>作用是将一些比较复杂的查询语句的结果，封装到一个虚拟表中。后期再有相同复杂查询时，直接查询这张虚拟表即可</li>
+<li>说白了，视图就是将一条SELECT查询语句的结果封装到了一个虚拟表中，所以我们在创建视图的时候，工作重心就要放在这条SELECT查询语句上</li>
+</ul>
+<h2 id="2视图的好处">2.视图的好处</h2>
+<ul>
+<li>简单
+<ul>
+<li>对于使用视图的用户不需要关心表的结构、关联条件和筛选条件。因为这张虚拟表中保存的就是已经过滤好条件的结果集</li>
+</ul>
+</li>
+<li>安全
+<ul>
+<li>视图可以设置权限 , 致使访问视图的用户只能访问他们被允许查询的结果集</li>
+</ul>
+</li>
+<li>数据独立
+<ul>
+<li>一旦视图的结构确定了，可以屏蔽表结构变化对用户的影响，源表增加列对视图没有影响；源表修改列名，则可以通过修改视图来解决，不会造成对访问者的影响</li>
+</ul>
+</li>
+</ul>
+<h2 id="3视图数据准备">3.视图数据准备</h2>
+<pre><code>-- 创建db7数据库
+CREATE DATABASE db7;
+
+-- 使用db7数据库
+USE db7;
+
+-- 创建country表
+CREATE TABLE country(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    country_name VARCHAR(30)
+);
+-- 添加数据
+INSERT INTO country VALUES (NULL,'中国'),(NULL,'美国'),(NULL,'俄罗斯');
+
+-- 创建city表
+CREATE TABLE city(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    city_name VARCHAR(30),
+    cid INT, -- 外键列。关联country表的主键列id
+    CONSTRAINT cc_fk1 FOREIGN KEY (cid) REFERENCES country(id)
+);
+-- 添加数据
+INSERT INTO city VALUES (NULL,'北京',1),(NULL,'上海',1),(NULL,'纽约',2),(NULL,'莫斯科',3);
+</code></pre>
+<h2 id="4视图的创建">4.视图的创建</h2>
+<ul>
+<li>创建视图语法</li>
+</ul>
+<pre><code>-- 标准语法
+CREATE VIEW 视图名称 [(列名列表)] AS 查询语句;
+</code></pre>
+<ul>
+<li>普通多表查询，查询城市和所属国家</li>
+</ul>
+<pre><code>-- 普通多表查询，查询城市和所属国家
+SELECT
+    t1.*,
+    t2.country_name
+FROM
+    city t1,
+    country t2
+WHERE
+    t1.cid = t2.id;
+    
+-- 经常需要查询这样的数据，就可以创建一个视图
+</code></pre>
+<ul>
+<li>创建视图基本演示</li>
+</ul>
+<pre><code>-- 创建一个视图。将查询出来的结果保存到这张虚拟表中
+CREATE
+VIEW
+    city_country
+AS
+    SELECT t1.*,t2.country_name FROM city t1,country t2 WHERE t1.cid=t2.id;
+</code></pre>
+<ul>
+<li>创建视图并指定列名基本演示</li>
+</ul>
+<pre><code>-- 创建一个视图，指定列名。将查询出来的结果保存到这张虚拟表中
+CREATE
+VIEW
+    city_country2 (city_id,city_name,cid,country_name) 
+AS
+    SELECT t1.*,t2.country_name FROM city t1,country t2 WHERE t1.cid=t2.id;
+
+</code></pre>
+<h2 id="5视图的查询">5.视图的查询</h2>
+<ul>
+<li>查询视图语法</li>
+</ul>
+<pre><code>-- 标准语法
+SELECT * FROM 视图名称;
+</code></pre>
+<ul>
+<li>查询视图基本演示</li>
+</ul>
+<pre><code>-- 查询视图。查询这张虚拟表，就等效于查询城市和所属国家
+SELECT * FROM city_country;
+
+-- 查询指定列名的视图
+SELECT * FROM city_country2;
+
+-- 查询所有数据表，视图也会查询出来
+SHOW TABLES;
+</code></pre>
+<ul>
+<li>查询视图创建语法</li>
+</ul>
+<pre><code>-- 标准语法
+SHOW CREATE VIEW 视图名称;
+</code></pre>
+<ul>
+<li>查询视图创建语句基本演示</li>
+</ul>
+<pre><code>SHOW CREATE VIEW city_country;
+</code></pre>
+<h2 id="6视图的修改">6.视图的修改</h2>
+<ul>
+<li>修改视图表中的数据</li>
+</ul>
+<pre><code>-- 标准语法
+UPDATE 视图名称 SET 列名=值 WHERE 条件;
+
+-- 修改视图表中的城市名称北京为北京市
+UPDATE city_country SET city_name='北京市' WHERE city_name='北京';
+
+-- 查询视图
+SELECT * FROM city_country;
+
+-- 查询city表,北京也修改为了北京市
+SELECT * FROM city;
+
+-- 注意：视图表数据修改，会自动修改源表中的数据
+</code></pre>
+<ul>
+<li>修改视图表结构</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER VIEW 视图名称 [(列名列表)] AS 查询语句;
+
+-- 查询视图2
+SELECT * FROM city_country2;
+
+-- 修改视图2的列名city_id为id
+ALTER
+VIEW
+    city_country2 (id,city_name,cid,country_name)
+AS
+    SELECT t1.*,t2.country_name FROM city t1,country t2 WHERE t1.cid=t2.id;
+</code></pre>
+<h2 id="7视图的删除">7.视图的删除</h2>
+<ul>
+<li>删除视图</li>
+</ul>
+<pre><code>-- 标准语法
+DROP VIEW [IF EXISTS] 视图名称;
+
+-- 删除视图
+DROP VIEW city_country;
+
+-- 删除视图2，如果存在则删除
+DROP VIEW IF EXISTS city_country2;
+</code></pre>
+<h2 id="8视图的总结">8.视图的总结</h2>
+<ul>
+<li>视图是一种虚拟存在的数据表</li>
+<li>这个虚拟的表并不在数据库中实际存在</li>
+<li>说白了，视图就是将一条SELECT查询语句的结果封装到了一个虚拟表中，所以我们在创建视图的时候，工作重心就要放在这条SELECT查询语句上</li>
+<li>视图的好处
+<ul>
+<li>简单</li>
+<li>安全</li>
+<li>数据独立</li>
+</ul>
+</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gblw-blog.github.io/8IYINWEAB/" class="post-title gt-a-link">
+                    Mysql-约束相关
+                </a>
+            </div>
+        
+
+        
+            <span id="/6Nas0HqUb//" class="leancloud_visitors" data-flag-title="Mysql-进阶总结">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">花有重开日，人无再少年</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/gblaowang-i" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/Wsnd_D" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        菩提本无树，明镜亦非台，本来无一物，何处惹尘埃。
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://gblw-blog.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>常用shell脚本 | HelloWorld</title>
+
+<link rel="shortcut icon" href="https://gblw-blog.github.io/favicon.ico?v=1666530277457">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://gblw-blog.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            HelloWorld
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamstore.tk" class="menu gt-a-link">
+                            小店
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamproxy.ml" class="menu gt-a-link">
+                            资料库
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://status.666818.xyz" class="menu gt-a-link">
+                            服务监控
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://gblw-blog.github.io/5i_Xj6-wL" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1666530277457" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    常用shell脚本
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-09-02 ·
+                    </time>
+                    
+                        <a href="https://gblw-blog.github.io/6uQLGcOmx/" class="post-tags">
+                            # 其他
+                        </a>
+                    
+                        <a href="https://gblw-blog.github.io/LWaH52Axe/" class="post-tags">
+                            # linux
+                        </a>
+                    
+                        <a href="https://gblw-blog.github.io/zGCrkHYz_/" class="post-tags">
+                            # 资料整理
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>【x-ui】<br>
+<code>bash &lt;(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)</code><br>
+【Azure提取api】<br>
+<code>az ad sp create-for-rbac --role contributor --scopes /subscriptions/$(az account list --query [].id -o tsv)</code><br>
+【聚合测试】<br>
+<code>wget -O jcnfbox.sh https://raw.githubusercontent.com/Netflixxp/jcnf-box/main/jcnfbox.sh &amp;&amp; chmod +x jcnfbox.sh &amp;&amp; clear &amp;&amp; ./jcnfbox.sh</code><br>
+【BBR】<br>
+<code>wget -N --no-check-certificate &quot;https://gist.github.com/zeruns/a0ec603f20d1b86de6a774a8ba27588f/raw/4f9957ae23f5efb2bb7c57a198ae2cffebfb1c56/tcp.sh&quot; &amp;&amp; chmod +x tcp.sh &amp;&amp; ./tcp.sh</code><br>
+【Serverstatus】<br>
+<code>wget https://cokemine.coding.net/p/hotarunet/d/ServerStatus-Hotaru/git/raw/master/status.sh</code><br>
+【Rclone】<br>
+<code>curl https://rclone.org/install.sh | sudo bash</code><br>
+【Docker】<br>
+<code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code><br>
+【FileBrowser】<br>
+<code>bash &lt;(curl -s -L https://233blog.com/filebrowser.sh)</code><br>
+【Warp】<br>
+<code>wget -O  menu.sh https://cdn.jsdelivr.net/gh/fscarmen/warp/menu.sh &amp;&amp; bash menu.sh</code><br>
+【Aapanel助手】<br>
+<code>wget https://ghproxy.com/https://raw.githubusercontent.com/AaronYES/aaPanel/main/script/aapanel.sh  -O aapanel.sh &amp;&amp; chmod +x aapanel.sh &amp;&amp; clear &amp;&amp; ./aapanel.sh</code><br>
+【DD脚本】<br>
+<code>wget -N --no-check-certificate https://down.vpsaff.net/linux/dd/network-reinstall-os.sh &amp;&amp; \\nchmod +x network-reinstall-os.sh &amp;&amp; ./network-reinstall-os.sh</code><br>
+【流媒体测试】<br>
+<code>bash &lt;(curl -L -s check.unlock.media)</code><br>
+【回程路由测试】<br>
+<code>curl https://raw.githubusercontent.com/zhucaidan/mtr_trace/main/mtr_trace.sh|bash</code><br>
+【添加Swap】<br>
+<code>wget https://www.moerats.com/usr/shell/swap.sh &amp;&amp; bash swap.sh</code><br>
+【Vps线路测试】<br>
+<code>wget --no-check-certificate https://tutu.ovh/bash/returnroute/route &amp;&amp; chmod +x route &amp;&amp; clear &amp;&amp; ./route try try</code><br>
+【后端对接】<br>
+<code>bash &lt;(curl -Ls https://raw.githubusercontent.com/crossfw/Air-Universe-install/master/AirU.sh)</code></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+
+        
+            <span id="/chang-yong-shell-jiao-ben//" class="leancloud_visitors" data-flag-title="常用shell脚本">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">花有重开日，人无再少年</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/gblaowang-i" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/Wsnd_D" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        菩提本无树，明镜亦非台，本来无一物，何处惹尘埃。
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://gblw-blog.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

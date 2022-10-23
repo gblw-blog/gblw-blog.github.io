@@ -1,0 +1,547 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Mysql-约束相关 | HelloWorld</title>
+
+<link rel="shortcut icon" href="https://gblw-blog.github.io/favicon.ico?v=1666530277457">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://gblw-blog.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            HelloWorld
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamstore.tk" class="menu gt-a-link">
+                            小店
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://yamproxy.ml" class="menu gt-a-link">
+                            资料库
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://status.666818.xyz" class="menu gt-a-link">
+                            服务监控
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://gblw-blog.github.io/5i_Xj6-wL" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1666530277457" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Mysql-约束相关
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-10-04 ·
+                    </time>
+                    
+                        <a href="https://gblw-blog.github.io/OZ4qB88YM/" class="post-tags">
+                            # Mysql
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <hr>
+<h2 id="约束的概念和分类">约束的概念和分类</h2>
+<ul>
+<li>约束的概念
+<ul>
+<li>对表中的数据进行限定，保证数据的正确性、有效性、完整性！</li>
+</ul>
+</li>
+<li>约束的分类<br>
+PRIMARY KEY---&gt;主键约束<br>
+PRIMARY KEY AUTO_INCREMENT---&gt;主键、自动增长<br>
+UNIQUE---&gt;唯一约束<br>
+NOT NULL---&gt;非空约束<br>
+FOREIGN KEY---&gt;外键约束<br>
+FOREIGN KEY ON UPDATE CASCADE---&gt;外键级联更新<br>
+FOREIGN KEY ON DELETE CASCADE---&gt;外键级联删除</li>
+</ul>
+<h2 id="主键约束">主键约束</h2>
+<ul>
+<li>主键约束特点
+<ul>
+<li>主键约束包含：非空和唯一两个功能</li>
+<li>一张表只能有一个列作为主键</li>
+<li>主键一般用于表中数据的唯一标识</li>
+</ul>
+</li>
+<li>建表时添加主键约束</li>
+</ul>
+<pre><code>-- 标准语法
+CREATE TABLE 表名(
+    列名 数据类型 PRIMARY KEY,
+    列名 数据类型,
+    ...
+);
+
+-- 创建student表
+CREATE TABLE student(
+    id INT PRIMARY KEY  -- 给id添加主键约束
+);
+
+-- 添加数据
+INSERT INTO student VALUES (1),(2);
+-- 主键默认唯一，添加重复数据，会报错
+INSERT INTO student VALUES (2);
+-- 主键默认非空，不能添加null的数据
+INSERT INTO student VALUES (NULL);
+
+-- 查询student表
+SELECT * FROM student;
+-- 查询student表详细
+DESC student;
+</code></pre>
+<ul>
+<li>删除主键</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 DROP PRIMARY KEY;
+
+-- 删除主键
+ALTER TABLE student DROP PRIMARY KEY;
+</code></pre>
+<ul>
+<li>建表后单独添加主键</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 MODIFY 列名 数据类型 PRIMARY KEY;
+
+-- 添加主键
+ALTER TABLE student MODIFY id INT PRIMARY KEY;
+</code></pre>
+<h2 id="主键自动增长约束">主键自动增长约束</h2>
+<ul>
+<li>建表时添加主键自增约束</li>
+</ul>
+<pre><code>-- 标准语法
+CREATE TABLE 表名(
+    列名 数据类型 PRIMARY KEY AUTO_INCREMENT,
+    列名 数据类型,
+    ...
+);
+
+-- 创建student2表
+CREATE TABLE student2(
+    id INT PRIMARY KEY AUTO_INCREMENT    -- 给id添加主键自增约束
+);
+
+-- 添加数据
+INSERT INTO student2 VALUES (1),(2);
+-- 添加null值，会自动增长
+INSERT INTO student2 VALUES (NULL),(NULL);
+
+-- 查询student2表
+SELECT * FROM student2;
+-- student2表详细
+DESC student2;
+</code></pre>
+<ul>
+<li>删除自动增长</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 MODIFY 列名 数据类型;
+
+-- 删除自动增长
+ALTER TABLE student2 MODIFY id INT;
+</code></pre>
+<ul>
+<li>建表后单独添加自动增长</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 MODIFY 列名 数据类型 AUTO_INCREMENT;
+
+-- 添加自动增长
+ALTER TABLE student2 MODIFY id INT AUTO_INCREMENT;
+</code></pre>
+<h2 id="唯一约束">唯一约束</h2>
+<ul>
+<li>建表时添加唯一约束</li>
+</ul>
+<pre><code>-- 标准语法
+CREATE TABLE 表名(
+    列名 数据类型 UNIQUE,
+    列名 数据类型,
+    ...
+);
+
+-- 创建student3表
+CREATE TABLE student3(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tel VARCHAR(20) UNIQUE    -- 给tel列添加唯一约束
+);
+
+-- 添加数据
+INSERT INTO student3 VALUES (NULL,'18888888888'),(NULL,'18666666666');
+-- 添加重复数据，会报错
+INSERT INTO student3 VALUES (NULL,'18666666666');
+
+-- 查询student3数据表
+SELECT * FROM student3;
+-- student3表详细
+DESC student3;
+</code></pre>
+<ul>
+<li>删除唯一约束</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 DROP INDEX 列名;
+
+-- 删除唯一约束
+ALTER TABLE student3 DROP INDEX tel;
+</code></pre>
+<ul>
+<li>建表后单独添加唯一约束</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 MODIFY 列名 数据类型 UNIQUE;
+
+-- 添加唯一约束
+ALTER TABLE student3 MODIFY tel VARCHAR(20) UNIQUE;
+</code></pre>
+<h2 id="非空约束">非空约束</h2>
+<ul>
+<li>建表时添加非空约束</li>
+</ul>
+<pre><code>-- 标准语法
+CREATE TABLE 表名(
+    列名 数据类型 NOT NULL,
+    列名 数据类型,
+    ...
+);
+
+-- 创建student4表
+CREATE TABLE student4(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    NAME VARCHAR(20) NOT NULL    -- 给name添加非空约束
+);
+
+-- 添加数据
+INSERT INTO student4 VALUES (NULL,'张三'),(NULL,'李四');
+-- 添加null值，会报错
+INSERT INTO student4 VALUES (NULL,NULL);
+</code></pre>
+<ul>
+<li>删除非空约束</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 MODIFY 列名 数据类型;
+
+-- 删除非空约束
+ALTER TABLE student4 MODIFY NAME VARCHAR(20);
+</code></pre>
+<ul>
+<li>建表后单独添加非空约束</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 MODIFY 列名 数据类型 NOT NULL;
+
+-- 添加非空约束
+ALTER TABLE student4 MODIFY NAME VARCHAR(20) NOT NULL;
+</code></pre>
+<h2 id="外键约束">外键约束</h2>
+<ul>
+<li>外键约束概念
+<ul>
+<li>让表和表之间产生关系，从而保证数据的准确性！</li>
+</ul>
+</li>
+<li>建表时添加外键约束
+<ul>
+<li>为什么要有外键约束</li>
+</ul>
+</li>
+</ul>
+<pre><code>-- 创建db2数据库
+CREATE DATABASE db2;
+-- 使用db2数据库
+USE db2;
+
+-- 创建user用户表
+CREATE TABLE USER(
+	id INT PRIMARY KEY AUTO_INCREMENT,    -- id
+	NAME VARCHAR(20) NOT NULL             -- 姓名
+);
+-- 添加用户数据
+INSERT INTO USER VALUES (NULL,'张三'),(NULL,'李四'),(NULL,'王五');
+
+-- 创建orderlist订单表
+CREATE TABLE orderlist(
+	id INT PRIMARY KEY AUTO_INCREMENT,    -- id
+	number VARCHAR(20) NOT NULL,          -- 订单编号
+	uid INT                               -- 订单所属用户
+);
+-- 添加订单数据
+INSERT INTO orderlist VALUES (NULL,'hm001',1),(NULL,'hm002',1),
+(NULL,'hm003',2),(NULL,'hm004',2),
+(NULL,'hm005',3),(NULL,'hm006',3);
+
+-- 添加一个订单，但是没有所属用户。这合理吗？
+INSERT INTO orderlist VALUES (NULL,'hm007',8);
+-- 删除王五这个用户，但是订单表中王五还有很多个订单呢。这合理吗？
+DELETE FROM USER WHERE NAME='王五';
+
+-- 所以我们需要添加外键约束，让两张表产生关系
+</code></pre>
+<ul>
+<li>外键约束格式</li>
+</ul>
+<pre><code>CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主表主键列名)
+</code></pre>
+<ul>
+<li>创建表添加外键约束</li>
+</ul>
+<pre><code>CREATE TABLE USER(
+	id INT PRIMARY KEY AUTO_INCREMENT,    -- id
+	NAME VARCHAR(20) NOT NULL             -- 姓名
+);
+-- 添加用户数据
+INSERT INTO USER VALUES (NULL,'张三'),(NULL,'李四'),(NULL,'王五');
+
+-- 创建orderlist订单表
+CREATE TABLE orderlist(
+	id INT PRIMARY KEY AUTO_INCREMENT,    -- id
+	number VARCHAR(20) NOT NULL,          -- 订单编号
+	uid INT,                              -- 订单所属用户
+	CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id)   -- 添加外键约束
+);
+-- 添加订单数据
+INSERT INTO orderlist VALUES (NULL,'hm001',1),(NULL,'hm002',1),
+(NULL,'hm003',2),(NULL,'hm004',2),
+(NULL,'hm005',3),(NULL,'hm006',3);
+
+-- 添加一个订单，但是没有所属用户。无法添加
+INSERT INTO orderlist VALUES (NULL,'hm007',8);
+-- 删除王五这个用户，但是订单表中王五还有很多个订单呢。无法删除
+DELETE FROM USER WHERE NAME='王五';
+</code></pre>
+<ul>
+<li>删除外键约束</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 DROP FOREIGN KEY 外键名;
+
+-- 删除外键
+ALTER TABLE orderlist DROP FOREIGN KEY ou_fk1;
+</code></pre>
+<ul>
+<li>建表后添加外键约束</li>
+</ul>
+<pre><code>-- 标准语法
+ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主键列名);
+
+-- 添加外键约束
+ALTER TABLE orderlist ADD CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id);
+</code></pre>
+<h2 id="外键的级联更新和级联删除了解">外键的级联更新和级联删除(了解)</h2>
+<ul>
+<li>什么是级联更新和级联删除
+<ul>
+<li>当我想把user用户表中的某个用户删掉，我希望该用户所有的订单也随之被删除</li>
+<li>当我想把user用户表中的某个用户id修改，我希望订单表中该用户所属的订单用户编号也随之修改</li>
+</ul>
+</li>
+<li>添加级联更新和级联删除</li>
+</ul>
+<pre><code>-- 添加外键约束，同时添加级联更新  标准语法
+ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主键列名) ON UPDATE CASCADE;
+
+-- 添加外键约束，同时添加级联删除  标准语法
+ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主键列名) ON DELETE CASCADE;
+
+-- 添加外键约束，同时添加级联更新和级联删除  标准语法
+ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (本表外键列名) REFERENCES 主表名(主键列名) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- 删除外键约束
+ALTER TABLE orderlist DROP FOREIGN KEY ou_fk1;
+
+-- 添加外键约束，同时添加级联更新和级联删除
+ALTER TABLE orderlist ADD CONSTRAINT ou_fk1 FOREIGN KEY (uid) REFERENCES USER(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- 将王五用户的id修改为5    订单表中的uid也随之被修改
+UPDATE USER SET id=5 WHERE id=3;
+
+-- 将王五用户删除     订单表中该用户所有订单也随之删除
+DELETE FROM USER WHERE id=5;
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://gblw-blog.github.io/pVH7ViCHX/" class="post-title gt-a-link">
+                    Linux常用命令整理
+                </a>
+            </div>
+        
+
+        
+            <span id="/8IYINWEAB//" class="leancloud_visitors" data-flag-title="Mysql-约束相关">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">花有重开日，人无再少年</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/gblaowang-i" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/Wsnd_D" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        菩提本无树，明镜亦非台，本来无一物，何处惹尘埃。
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://gblw-blog.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
